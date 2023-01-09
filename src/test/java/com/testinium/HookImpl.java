@@ -87,8 +87,8 @@ public class HookImpl {
         capabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
         capabilities.setCapability("unicodeKeyboard", false);
         capabilities.setCapability("resetKeyboard", false);
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.chrome");
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.chrome.Main");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.lcwaikiki.android");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lcwaikiki.android.ui.SplashActivity");
 
 
         if (isLocal) {

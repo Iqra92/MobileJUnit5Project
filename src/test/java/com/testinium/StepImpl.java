@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
+import java.sql.Time;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -407,26 +408,24 @@ public class StepImpl extends HookImpl {
     @Step({"<key> li elementi bulana kadar swipe et",
             "Find element by <key>  swipe "})
     public void findByKeyWithSwipe(String key) {
-        int maxRetryCount = 10;
-        while (maxRetryCount > 0) {
-            List<MobileElement> elements = findElemenstByKey(key);
-            if (elements.size() > 0) {
-                if (elements.get(0).isDisplayed() == false) {
-                    maxRetryCount--;
 
+        try {
+            while (true) {
+                TimeUnit.SECONDS.sleep(1);
+                if (findElementByKey(key) != null) {
                     swipeDownAccordingToPhoneSize();
-
                 } else {
-                    System.out.println(key + " element bulundu");
                     break;
                 }
-            } else {
-                maxRetryCount--;
-                swipeDownAccordingToPhoneSize();
-
             }
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void justSwipe() {
+        TouchAction action = new TouchAction(appiumDriver);
+        action.press(PointOption.point(500, 2000)).moveTo(PointOption.point(500, 500)).release().perform();
     }
 
 

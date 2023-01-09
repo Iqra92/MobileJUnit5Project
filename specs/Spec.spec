@@ -3,7 +3,6 @@
 
 ## demo
 tags:demo
-* "5" saniye bekle
-
-
+*Elementine tıkla "SearcText"
+* "search" li elementi bul, temizle ve "kazak" değerini yaz
 
