@@ -1,0 +1,15 @@
+Created by User on 1/11/2023
+
+This is a concept file with following syntax for each concept.
+# Go to Login
+* Click element by "loginButton" if exist
+
+# Checking Validation Error
+* Click element by "loginSucess" if exist
+* Checking Phone Number Validation "phoneError"
+* Checking Password Validation "passwordError"
+* Enter Special Characters "phoneNumber" and Getting an Error "phoneError"
+* Enter password less than minimum length "password" and Getting an Error "passwordError"
+* Clear Input Field "password"
+* Wait "5" seconds
+* Enter password without letter "password" and Getting an Error "passwordError"

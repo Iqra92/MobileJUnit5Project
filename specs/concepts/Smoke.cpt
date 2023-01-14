@@ -1,0 +1,5 @@
+# Go to QA Env
+* Click element by "loginButton" if exist
+* Find element by "phoneNumber" and send keys "79366199804 "
+* Find element by "password" and send keys "123123Qa"
+* Click element by "loginSucess" if exist

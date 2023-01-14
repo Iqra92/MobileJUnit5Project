@@ -49,15 +49,15 @@ public class HookImpl {
 
             if (StringUtils.isEmpty(System.getenv("key"))) {
                 if (localAndroid) {
-                    logger.info("Local cihazda Android ortamında test ayağa kalkacak");
+                    logger.info("The test will stand up in the Android environment on the local device");
                     appiumDriver = new AndroidDriver(localUrl, androidCapabilities(true));
                 } else {
-                    logger.info("Local cihazda Android ortamında test ayağa kalkacak");
+                    logger.info("The test will stand up in the Android environment on the local device");
                     appiumDriver = new IOSDriver<>(localUrl, iosCapabilities(true));
                 }
             } else {
                 if (System.getenv("platform").equals("ANDROID")) {
-                    logger.info("Testiniumda Android ortamında test ayağa kalkacak");
+                    logger.info("Testing will stand up in Android environment in Testinium");
                     appiumDriver = new AndroidDriver(hubUrl, androidCapabilities(false));
 
                     localAndroid = true;
@@ -87,13 +87,13 @@ public class HookImpl {
         capabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
         capabilities.setCapability("unicodeKeyboard", false);
         capabilities.setCapability("resetKeyboard", false);
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.lcwaikiki.android");
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lcwaikiki.android.ui.SplashActivity");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.GoBet.envDev");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.GoBet.MainActivity");
 
 
         if (isLocal) {
             capabilities.setCapability(MobileCapabilityType.PLATFORM, MobilePlatform.ANDROID);
-            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "android");
+            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
             capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
         } else {
             //capabilities.setCapability("key", System.getenv("key"));
@@ -136,15 +136,15 @@ public class HookImpl {
 
     }
 
-    @AfterScenario
-    public void afterScenario() {
-
-        if (appiumDriver != null) {
-            appiumDriver.quit();
-        }
-
-        logger.info("*************************************************************************" + "\r\n");
-    }
+//    @AfterScenario
+//    public void afterScenario() {
+//
+//        if (appiumDriver != null) {
+//            appiumDriver.quit();
+//        }
+//
+//        logger.info("*************************************************************************" + "\r\n");
+//    }
 
     @AfterStep
     public void afterStep(ExecutionContext executionContext) {

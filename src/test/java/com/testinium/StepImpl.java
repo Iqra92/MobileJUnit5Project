@@ -19,7 +19,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.annotation.Nullable;
 import java.sql.Time;
 import java.time.Duration;
@@ -33,11 +32,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StepImpl extends HookImpl {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    public Logger logger = LoggerFactory.getLogger(getClass());
 
     public StepImpl() {
 
     }
+
+    public static int DEFAULT_MAX_ITERATION_COUNT = 150;
+    public static int DEFAULT_MILLISECOND_WAIT_AMOUNT = 100;
 
 
     public List<MobileElement> findElements(By by) throws Exception {
@@ -219,6 +221,51 @@ public class StepImpl extends HookImpl {
         assertTrue(findElementByKey(key).isDisplayed(), "Element sayfada bulunamadı !");
     }
 
+//    @Step("Wait for element then click <key>")
+//    public void checkElementExistsThenClick(String key) {
+//        getElementWithKeyIfExists(key);
+//        clickElement(key);
+//    }
+//
+//    @Step("Check if element <key> exists")
+//    public WebElement getElementWithKeyIfExists(String key) {
+//        WebElement webElement;
+//        int loopCount = 0;
+//        while (loopCount < DEFAULT_MAX_ITERATION_COUNT) {
+//            try {
+//                webElement = findElement(key);
+//                logger.info(key + " element is found.");
+//                return webElement;
+//            } catch (WebDriverException e) {
+//            }
+//            loopCount++;
+//            waitByMilliSeconds(DEFAULT_MILLISECOND_WAIT_AMOUNT);
+//        }
+//        Assert.fail("Element: '" + key + "' doesn't exist.");
+//        return null;
+//    }
+//
+//    @Step({"Click to element <key>",
+//            "Elementine tıkla <key>"})
+//    public void clickElement(String key) {
+//        WebElement element = findElement(key);
+//        clickElement(element);
+//        logger.info( "Clicked to the "+ key );
+//
+//    }
+//
+//
+//    @Step({"Wait <value> milliseconds",
+//            "<long> milisaniye bekle"})
+//    public void waitByMilliSeconds(long milliseconds) {
+//        try {
+//            logger.info("waiting" + milliseconds+ " milliseconds.");
+//            Thread.sleep(milliseconds);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @Step("<key> elementinin <text> textini içerdiği kontrol edilir")
     public void checkTextByKey(String key, String text) {
         try {
@@ -229,12 +276,12 @@ public class StepImpl extends HookImpl {
         }
     }
 
-    @Step({"<key> li elementi bul ve varsa tıkla", "Click element by <key> if exist"})
+    @Step("Click element by <key> if exist")
     public void existClickByKey(String key) throws InterruptedException {
         MobileElement element;
         element = findElementByKeyWithoutAssert(key);
         if (element != null) {
-            System.out.println("  varsa tıklaya girdi");
+            System.out.println("  if any, click");
             Point elementPoint = ((MobileElement) element).getCenter();
             TouchAction action = new TouchAction(appiumDriver);
             action.tap(PointOption.point(elementPoint.x, elementPoint.y)).perform();
@@ -243,7 +290,7 @@ public class StepImpl extends HookImpl {
     }
 
 
-    @Step({"<key> li elementi bul ve varsa dokun", "Click element by <key> if exist"})
+    @Step({"<key> li elementi bul ve varsa dokun", "Click element by <key> if exist or not"})
     public void existTapByKey(String key) {
         if (findElementByKey(key).isDisplayed()) {
             findElementByKey(key).click();
@@ -262,8 +309,7 @@ public class StepImpl extends HookImpl {
 
     }
 
-    @Step({"<key> li elementi bul, temizle ve <text> değerini yaz",
-            "Find element by <key> clear and send keys <text>"})
+    @Step("Find element by <key> clear and send keys <text>")
     public void sendKeysByKey(String key, String text) {
         MobileElement webElement = findElementByKey(key);
         webElement.clear();
@@ -271,16 +317,15 @@ public class StepImpl extends HookImpl {
     }
 
 
-    @Step({"<t> textini <k> elemente yaz",
-            "Find element by <key> and send keys <text>"})
+    @Step("Find element by <key> and send keys <text>")
     public void sendKeysByKeyNotClear(String t, String k) {
-        doesElementExistByKey(k, 5);
-        findElementByKey(k).sendKeys(t);
+        doesElementExistByKey(t, 5);
+        findElementByKey(t).sendKeys(k);
+        logger.info("Send Input successfully: "+k);
 
     }
 
-    @Step({"<key> li elementi bul ve değerini <saveKey> olarak sakla",
-            "Find element by <key> and save text <saveKey>"})
+    @Step("Find element by <key> and save text <saveKey>")
     public void saveTextByKey(String key, String saveKey) {
         StoreHelper.INSTANCE.saveValue(saveKey, findElementByKey(key).getText());
         logger.info("Video " + StoreHelper.INSTANCE.getValue(saveKey) + "saniyesinde durduruldu.");
