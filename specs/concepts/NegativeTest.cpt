@@ -9,7 +9,7 @@ This is a concept file with following syntax for each concept.
 * Checking Phone Number Validation "phoneError"
 * Checking Password Validation "passwordError"
 * Enter Special Characters "phoneNumber" and Getting an Error "phoneError"
-* Enter password less than minimum length "password" and Getting an Error "passwordError"
-* Clear Input Field "password"
+* Enter password less than minimum length "passwordLogin" and Getting an Error "passwordError"
+* Clear Input Field "passwordLogin"
 * Wait "5" seconds
-* Enter password without letter "password" and Getting an Error "passwordError"
+* Enter password without letter "passwordLogin" and Getting an Error "passwordError"

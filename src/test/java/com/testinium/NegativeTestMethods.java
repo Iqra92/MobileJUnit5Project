@@ -1,11 +1,7 @@
 package com.testinium;
 
-import com.testinium.helper.Constants;
 import com.thoughtworks.gauge.Step;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import static com.testinium.helper.Constants.*;
 
@@ -59,7 +55,7 @@ public class NegativeTestMethods extends StepImpl {
 
         MobileElement element = findElementByKey(passlength);
         element.sendKeys(PASSWORD_LENGTH);
-        logger.info("Special Character is: "+PASSWORD_LENGTH);
+        logger.info("Password less than minimum value: "+PASSWORD_LENGTH);
         waitBySecond(5);
 
         MobileElement error = findElementByKey(validation);

@@ -3,7 +3,6 @@ package com.testinium;
 import com.testinium.selector.Selector;
 import com.testinium.selector.SelectorFactory;
 import com.testinium.selector.SelectorType;
-import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.AfterStep;
 import com.thoughtworks.gauge.BeforeScenario;
 import com.thoughtworks.gauge.ExecutionContext;
@@ -93,7 +92,7 @@ public class HookImpl {
 
         if (isLocal) {
             capabilities.setCapability(MobileCapabilityType.PLATFORM, MobilePlatform.ANDROID);
-            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
+            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Galaxy S8+");
             capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
         } else {
             //capabilities.setCapability("key", System.getenv("key"));

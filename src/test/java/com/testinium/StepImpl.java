@@ -11,6 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -19,12 +20,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import static com.testinium.helper.Constants.*;
+
 import javax.annotation.Nullable;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import static java.time.Duration.ofMillis;
@@ -266,7 +271,7 @@ public class StepImpl extends HookImpl {
 //        }
 //    }
 
-    @Step("<key> elementinin <text> textini içerdiği kontrol edilir")
+    @Step("Check that the <key> element contains the text <text>")
     public void checkTextByKey(String key, String text) {
         try {
             Thread.sleep(3000);
@@ -281,7 +286,7 @@ public class StepImpl extends HookImpl {
         MobileElement element;
         element = findElementByKeyWithoutAssert(key);
         if (element != null) {
-            System.out.println("  if any, click");
+            System.out.println("  Element Selected:"+element);
             Point elementPoint = ((MobileElement) element).getCenter();
             TouchAction action = new TouchAction(appiumDriver);
             action.tap(PointOption.point(elementPoint.x, elementPoint.y)).perform();
@@ -322,6 +327,14 @@ public class StepImpl extends HookImpl {
         doesElementExistByKey(t, 5);
         findElementByKey(t).sendKeys(k);
         logger.info("Send Input successfully: "+k);
+
+    }
+
+    @Step("Click check box <key>")
+    public void selectCheckBox(String key) {
+
+        findElementByKey(key).click();
+        logger.info("Select check box successfully: ");
 
     }
 
@@ -429,13 +442,12 @@ public class StepImpl extends HookImpl {
                 .perform();
     }
 
-    @Step({"<key> id'li elementi bulana kadar <times> swipe yap ",
-            "Find element by <key>  <times> swipe "})
+    @Step("Find element by <key>  <times> swipe")
     public void swipeDownUntilSeeTheElement(String element, int limit) throws InterruptedException {
         for (int i = 0; i < limit; i++) {
             List<MobileElement> meList = findElementsWithoutAssert(By.id(element));
             meList = meList != null ? meList : new ArrayList<MobileElement>();
-            logger.info(i + ". swipe yapiliyor");
+            logger.info(i + ". swipe being done");
             if (meList.size() > 0 &&
                     meList.get(0).getLocation().x <= getScreenWidth() &&
                     meList.get(0).getLocation().y <= getScreenHeight()) {
@@ -684,10 +696,58 @@ public class StepImpl extends HookImpl {
     }
 
 
-    @Step({"<length> uzunlugunda random bir kelime üret ve <saveKey> olarak sakla"})
-    public void createRandomNumber(int length, String saveKey) {
+    @Step({"Generate a random word of <length> and store it to <saveKey> then send value <key>"})
+    public void createRandomStringNumber(int length,String saveKey, String phoneNumber) {
+
         StoreHelper.INSTANCE.saveValue(saveKey, new RandomString(length).nextString());
+        findElementByKey(phoneNumber).sendKeys(saveKey);
+        logger.info("Send Input successfully: "+saveKey);
     }
+
+    @Step({"Generate a random number"})
+    public List<Integer> uniqueNumber() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=1; i<11; i++) list.add(i);
+        Collections.shuffle(list);
+        return list;
+    }
+
+    @Step({"Generate a random number then send value <key>"})
+    public void generateUniqueNumber(String phoneNumber) {
+      findElementByKey(phoneNumber).sendKeys(uniqueNumber().toString());
+        logger.info("Send Phone Number successfully: "+uniqueNumber().toString());
+    }
+
+
+
+    @Step("Find element by clear and send keys random email <key>")
+    public void RandomMail(String email) {
+        Long timestamp = getTimestamp();
+        MobileElement element = findElementByKey(email);
+        element.clear();
+        element.sendKeys("test" + timestamp + "@testinium.com");
+        logger.info("Email is:"+element);
+
+    }
+    public Long getTimestamp() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        return (timestamp.getTime());
+    }
+
+    @Step({"Write random Alpha value to element starting with <text> and send value <key>"})
+    public void writeRandomAlphaValueToElement(String startingText,String firstName) {
+        String value = RandomStringUtils.randomAlphabetic(5);
+        findElementByKey(firstName).sendKeys(startingText+ value);
+        logger.info("The text is written to the field as: " + startingText + value);
+    }
+
+    @Step({"Write random Alpha value to element Last Name starting with <text> and send value <key>"})
+    public void writeRandomAlphaValueToElementLastName(String startingText,String lastName) {
+        String value = RandomStringUtils.randomAlphabetic(5);
+        findElementByKey(lastName).sendKeys(startingText+ value);
+        logger.info("The text is written to the field as: " + startingText + value);
+    }
+
 
     @Step("geri butonuna bas")
     public void clickBybackButton() {
@@ -861,8 +921,8 @@ public class StepImpl extends HookImpl {
     }
 
 
-    @Step("<key> li elementin  merkezine double tıkla ")
-    public void pressElementWithKey2(String key) {
+    @Step("Double click the center of the element with <key>")
+    public void pressElementWithKey2(String key) throws InterruptedException {
         Actions actions = new Actions(appiumDriver);
         actions.moveToElement(findElementByKey(key));
         actions.doubleClick();
@@ -870,6 +930,7 @@ public class StepImpl extends HookImpl {
         appiumDriver.getKeyboard();
 
     }
+
 
     @Step("<key> li elementi rasgele sec")
     public void chooseRandomProduct(String key) {

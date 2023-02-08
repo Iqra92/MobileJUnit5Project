@@ -1,5 +1,29 @@
 # Go to QA Env
 * Click element by "loginButton" if exist
 * Find element by "phoneNumber" and send keys "79366199804 "
-* Find element by "password" and send keys "123123Qa"
-* Click element by "loginSucess" if exist
+* Find element by "passwordLogin" and send keys "123123Qa"
+* Wait "5" seconds
+* Find element text equals "LOGIN" and click
+//* Click element by "loginSucess" if exist
+
+
+# Go to register page
+*Wait "2" seconds
+* Click element by "joinButton" if exist
+
+# Sign Up
+* Click element by "phoneCode" if exist
+* Click element by "phoneCodeSelect" if exist
+* Generate a random number then send value "phoneNumber"
+* Click element by "currencyButton" if exist
+* Wait "5" seconds
+* Click element by "currencySelect" if exist
+* Find element by clear and send keys random email "email"
+* Write random Alpha value to element starting with "test" and send value "firstName"
+* Write random Alpha value to element Last Name starting with "testinium" and send value "lastName"
+* Find element by "birthDay" and send keys "08.12.1992"
+* Find element by "passwordJoin" and send keys "Qa123123"
+* Wait "5" seconds
+* Find element text equals "By ticking this box, in order to register for this website, the user declares to have read, understood and accepted the" and click
+* Wait "5" seconds
+* Find element text equals "REGISTER" and click
