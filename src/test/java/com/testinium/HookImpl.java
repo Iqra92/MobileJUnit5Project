@@ -49,7 +49,7 @@ public class HookImpl {
             if (StringUtils.isEmpty(System.getenv("key"))) {
                 if (localAndroid) {
                     logger.info("The test will stand up in the Android environment on the local device");
-                    appiumDriver = new AndroidDriver(localUrl, androidCapabilities(true));
+                    appiumDriver = new AndroidDriver<>(localUrl, androidCapabilities(true));
                 } else {
                     logger.info("The test will stand up in the Android environment on the local device");
                     appiumDriver = new IOSDriver<>(localUrl, iosCapabilities(true));
@@ -91,8 +91,11 @@ public class HookImpl {
 
 
         if (isLocal) {
-            capabilities.setCapability(MobileCapabilityType.PLATFORM, MobilePlatform.ANDROID);
+//            capabilities.setCapability(MobileCapabilityType.PLATFORM, MobilePlatform.ANDROID);
+            capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Galaxy S8+");
+            capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9");
+ //           capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
             capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
         } else {
             //capabilities.setCapability("key", System.getenv("key"));

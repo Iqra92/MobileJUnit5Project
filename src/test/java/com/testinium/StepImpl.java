@@ -2,6 +2,7 @@ package com.testinium;
 
 import com.testinium.helper.RandomString;
 import com.testinium.helper.StoreHelper;
+import com.testinium.model.ElementInfo;
 import com.testinium.model.SelectorInfo;
 import com.thoughtworks.gauge.Step;
 import io.appium.java_client.MobileBy;
@@ -100,6 +101,7 @@ public class StepImpl extends HookImpl {
         return mobileElement;
     }
 
+
     public MobileElement findElementWithoutAssert(By by) {
         MobileElement mobileElement = null;
         try {
@@ -181,6 +183,7 @@ public class StepImpl extends HookImpl {
             "Find element text equals <text> and click"})
     public void clickByText(String text) {
         findElementWithAssertion(By.xpath(".//*[contains(@text,'" + text + "')]")).click();
+        logger.info("Element is clicked");
     }
 
     @Step({"İçeriği <value> e eşit olan elementli bul ve tıkla",
@@ -292,6 +295,12 @@ public class StepImpl extends HookImpl {
             action.tap(PointOption.point(elementPoint.x, elementPoint.y)).perform();
         }
         waitBySecond(2);
+    }
+    @Step("Click Perform <key>")
+    public void clickFunction(String key) throws Exception {
+
+
+
     }
 
 
@@ -479,10 +488,11 @@ public class StepImpl extends HookImpl {
             e.printStackTrace();
         }
     }
+    @Step("Swipe <key>")
 
-    public void justSwipe() {
+    public void justSwipe(String key) {
         TouchAction action = new TouchAction(appiumDriver);
-        action.press(PointOption.point(500, 2000)).moveTo(PointOption.point(500, 500)).release().perform();
+        action.press(PointOption.point(162, 854)).moveTo(PointOption.point(801, 836)).release().perform();
     }
 
 
@@ -1054,6 +1064,56 @@ public class StepImpl extends HookImpl {
         TouchAction a2 = new TouchAction(appiumDriver);
         a2.tap(PointOption.point(x, y)).perform();
         logger.info("tıklama yapıldı");
+    }
+
+    @Step("Genarete random number for Deposit methods <key> and saved the number <saveKey>. And write the saved key to the <keyy> element")
+    public void picksave(String amountValue,String saveKey, String keyy) throws Exception {
+        int randomNumber = generateRandomNumber(sliceNumber(amountValue ,true),
+                sliceNumber(amountValue ,false));
+        //webElement.sendKeys(String.valueOf(randomNumber));
+        StoreHelper.INSTANCE.saveValue(saveKey, String.valueOf(randomNumber));
+        logger.info("saveKey for genareted random number: " + saveKey);
+        StoreHelper.INSTANCE.getValue(saveKey);
+        WebElement element = findElementByKey(keyy);
+        element.sendKeys(StoreHelper.INSTANCE.getValue(saveKey));
+        //webElement.sendKeys(StoreHelper.INSTANCE.getValue(saveKey));
+    }
+
+    public String sliceNumber(String amountValue, boolean isMin) throws Exception {
+        WebElement getValue = findElementByKey(amountValue);
+        String amountdata = getValue.getText();
+        String spliter = String.valueOf(amountdata);
+        String[] sliceString = spliter.split(",");
+        String min = sliceString[0];
+        String max = sliceString[1];
+        logger.info("m value1 = " + "" + min);
+        logger.info("m value1 = " + "" + max);
+
+
+        String mimNumberOnly= min.replaceAll("[^0-9]", "");
+        logger.info("Minimum Value is: "+""+mimNumberOnly);
+        String maxNumberOnly= max.replaceAll("[^0-9]", "");
+        logger.info("Maximum Value is: "+""+maxNumberOnly);
+
+        if (isMin){
+            return mimNumberOnly;
+        }
+        else
+            return maxNumberOnly;
+
+    }
+
+    public int generateRandomNumber(String min, String max) throws Exception {
+
+        Random random = new Random();
+        if (Integer.parseInt(max) > Integer.parseInt(min)){
+            int result = random.nextInt((Integer.parseInt(max) - Integer.parseInt(min)) + Integer.parseInt(min));
+            logger.info("random number: " + result);
+            return result;
+        }
+        else{
+            throw new Exception("There isn't enough balance in account");
+        }
     }
 
 }

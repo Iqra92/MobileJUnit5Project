@@ -12,3 +12,11 @@ tags:register
 * Go to register page
 * Sign Up
 
+## Make Deposite With PIX In Method
+tags:makeDepositWithPIXMethod
+//* Go to QA Env
+* Open My account
+//* Choose Withdrawal
+* Choose to Payment Method with "depositPIXMethod"
+* Genarete Random PIX Deposit Value and Enter that value
+

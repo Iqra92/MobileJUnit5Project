@@ -1,10 +1,17 @@
 # Go to QA Env
 * Click element by "loginButton" if exist
-* Find element by "phoneNumber" and send keys "79366199804 "
-* Find element by "passwordLogin" and send keys "123123Qa"
+* Click element by "phoneNumber" if exist
+* Find element by "phoneNumber" and send keys "+5598765432111"
+* Click element by "passwordLogin" if exist
+* Find element by "passwordLogin" and send keys "Qa123456"
 * Wait "5" seconds
-* Find element text equals "LOGIN" and click
+* Hide keyboard
+* Swipe "loginSucess"
+//* Click Perform "loginSucess"
+//* Find element text equals "LOGIN" and click
 //* Click element by "loginSucess" if exist
+//* Click element by "loginSucess"
+//* Click element by "loginSucess" if exist or not
 
 
 # Go to register page
@@ -27,3 +34,19 @@
 * Find element text equals "By ticking this box, in order to register for this website, the user declares to have read, understood and accepted the" and click
 * Wait "5" seconds
 * Find element text equals "REGISTER" and click
+
+# Open My account
+* Click element by "depositButton" if exist
+* Wait "2" seconds
+
+# Choose Withdrawal
+* Click element by "chooseWithdrawal" if exist
+
+# Choose to Payment Method with <key>
+* Click element by <key> if exist
+
+# Genarete Random PIX Deposit Value and Enter that value
+* Click element by "pixMinAmount" if exist
+* Genarete random number for Deposit methods "pixMinAmount" and saved the number "randomNumber". And write the saved key to the "pixTransactionAmount" element
+* Wait "5" seconds
+
