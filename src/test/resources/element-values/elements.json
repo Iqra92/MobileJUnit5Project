@@ -169,12 +169,59 @@
     "iosType": "xpath"
   },
   {
-    "key": "pixProceedPAyment",
-    "androidValue": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[8]",
+    "key": "pixProceedPayment",
+    "androidValue": "//android.widget.TextView[@text = 'PROCEED TO PAYMENT']",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "IDCPF",
+    "androidValue": "//android.widget.EditText[@resource-id = 'inputform-taxid-mob']",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "namePM",
+    "androidValue": "//android.widget.EditText[@resource-id = 'inputform-name-mob']",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "emailPM",
+    "androidValue": "//android.widget.EditText[@resource-id = 'inputform-email-mob']",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "numberPM",
+    "androidValue": "//android.widget.EditText[@resource-id = 'inputform-phone-mob']",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "cepPM",
+    "androidValue": "//body/div[@id='root']/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/input[1]",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "confirmPayment",
+    "androidValue": "//android.widget.Button[@text = 'Confirm']",
+    "androidType": "xpath",
+    "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
+    "iosType": "xpath"
+  },
+  {
+    "key": "backToSite",
+    "androidValue": "//android.widget.Button[@text = 'Back to shopping']",
     "androidType": "xpath",
     "iosValue": "//XCUIElementTypeApplication[@name=\"Ozdilekteyim\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField",
     "iosType": "xpath"
   }
-
-
 ]

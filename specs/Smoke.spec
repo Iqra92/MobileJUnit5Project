@@ -19,4 +19,8 @@ tags:makeDepositWithPIXMethod
 //* Choose Withdrawal
 * Choose to Payment Method with "depositPIXMethod"
 * Genarete Random PIX Deposit Value and Enter that value
+* Continue To Transaction For PIX Deposit
+* Enter Pagsmile Details
+* Click on Perform Payment
+* Continue to Main Site
 

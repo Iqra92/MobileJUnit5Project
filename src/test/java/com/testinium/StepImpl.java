@@ -299,8 +299,6 @@ public class StepImpl extends HookImpl {
     @Step("Click Perform <key>")
     public void clickFunction(String key) throws Exception {
 
-
-
     }
 
 
@@ -338,6 +336,25 @@ public class StepImpl extends HookImpl {
         logger.info("Send Input successfully: "+k);
 
     }
+
+    @Step("Find element by locator and send keys <text>")
+    public void sendKeys(String k) throws Exception {
+        MobileElement element = null;
+        try {
+            element = findElement(By.xpath("//android.widget.EditText[@resource-id = 'inputform-phone-mob']"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        element.sendKeys(k);
+        logger.info("Send Input successfully: "+k);
+
+    }
+    @Step({"Clear text of element <key>",
+            "<key> elementinin text alanını temizle"})
+    public void clearInputArea(String key) {
+        findElementByKey(key).clear();
+    }
+
 
     @Step("Click check box <key>")
     public void selectCheckBox(String key) {
@@ -490,13 +507,18 @@ public class StepImpl extends HookImpl {
     }
     @Step("Swipe <key>")
 
-    public void justSwipe(String key) {
+    public void justSwipeLogin(String key) {
+        TouchAction action = new TouchAction(appiumDriver);
+        action.press(PointOption.point(162, 854)).moveTo(PointOption.point(801, 836)).release().perform();
+    }
+
+    public void swipeFunction(String key) {
         TouchAction action = new TouchAction(appiumDriver);
         action.press(PointOption.point(162, 854)).moveTo(PointOption.point(801, 836)).release().perform();
     }
 
 
-    @Step("<yon> yönüne swipe et")
+    @Step("<yon> swipe in your direction")
     public void swipe(String yon) {
 
         Dimension d = appiumDriver.manage().window().getSize();
@@ -578,6 +600,7 @@ public class StepImpl extends HookImpl {
             e.printStackTrace();
         }
     }
+    @Step("Swipe UP")
 
     public void swipeUpAccordingToPhoneSize() {
         if (appiumDriver instanceof AndroidDriver) {
@@ -880,7 +903,7 @@ public class StepImpl extends HookImpl {
             elementExist.until(ExpectedConditions.visibilityOfElementLocated(selectorInfo.getBy()));
             return true;
         } catch (Exception e) {
-            logger.info(key + " aranan elementi bulamadı");
+            logger.info(key + " could not find the element");
             return false;
         }
 
@@ -898,6 +921,7 @@ public class StepImpl extends HookImpl {
         Point point = findElementByKey(key).getCenter();
         TouchAction a2 = new TouchAction(appiumDriver);
         a2.tap(PointOption.point(point.x, point.y)).perform();
+
     }
 
     @Step("<key> li element varsa  <x> <y> koordinatına tıkla ")
@@ -920,7 +944,7 @@ public class StepImpl extends HookImpl {
         }
     }
 
-    @Step("<key> li elementin  merkezine  press ile çift tıkla ")
+    @Step("<key> li elementin  merkezine  press ile çift tıkla")
     public void pressElementWithKey(String key) {
 
         Point point = findElementByKey(key).getCenter();

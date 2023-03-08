@@ -50,3 +50,32 @@
 * Genarete random number for Deposit methods "pixMinAmount" and saved the number "randomNumber". And write the saved key to the "pixTransactionAmount" element
 * Wait "5" seconds
 
+# Continue To Transaction For PIX Deposit
+* Click element by "pixProceedPayment" if exist
+* Wait "10" seconds
+
+# Enter Pagsmile Details
+* Find element by "IDCPF" and send keys "502.844.147-27"
+* Wait "2" seconds
+* Click element by "namePM" if exist
+* Find element by "namePM" and send keys "qur"
+* Hide keyboard
+* Find element by "emailPM" and send keys "abc@abc.com"
+//* Hide keyboard
+* Swipe UP
+* Clear text of element "numberPM"
+* Click element by "numberPM" if exist
+* Find element by locator and send keys "75991435897"
+//* Find element by "numberPM" and send keys "75991435897"
+
+# Click on Perform Payment
+* Click element by "confirmPayment" if exist
+* Wait "5" seconds
+
+# Continue to Main Site
+* Click element by "backToSite" if exist
+* Wait "5" seconds
+
+
+
+
