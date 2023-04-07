@@ -289,16 +289,12 @@ public class StepImpl extends HookImpl {
         MobileElement element;
         element = findElementByKeyWithoutAssert(key);
         if (element != null) {
-            System.out.println("  Element Selected:"+element);
+            System.out.println("  Element Selected");
             Point elementPoint = ((MobileElement) element).getCenter();
             TouchAction action = new TouchAction(appiumDriver);
             action.tap(PointOption.point(elementPoint.x, elementPoint.y)).perform();
         }
         waitBySecond(2);
-    }
-    @Step("Click Perform <key>")
-    public void clickFunction(String key) throws Exception {
-
     }
 
 
@@ -349,6 +345,35 @@ public class StepImpl extends HookImpl {
         logger.info("Send Input successfully: "+k);
 
     }
+
+    @Step("Find element by locator test and send keys <text>")
+    public void sendKeyswithconcetenate(String k) throws Exception {
+        MobileElement element = null;
+        try {
+            element = findElement(By.xpath("//android.widget.EditText[@resource-id = 'inputform-phone-mob']"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        String value = element.getText();
+        sendKeys(value+ k );
+
+    }
+    @Step("Find element by locator with concat and send keys <text>")
+    public void sendKeysByKeywithConcat(String k) throws Exception {
+        MobileElement element = null;
+        try {
+            element = findElement(By.xpath("//android.widget.EditText[@resource-id = 'inputform-phone']"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        String value = element.getText();
+        element.setValue(value+k);
+      //  sendKeys(value+ k );
+
+        logger.info("Send Input successfully: "+ value);
+
+    }
+
     @Step({"Clear text of element <key>",
             "<key> elementinin text alanını temizle"})
     public void clearInputArea(String key) {
@@ -1107,7 +1132,7 @@ public class StepImpl extends HookImpl {
         WebElement getValue = findElementByKey(amountValue);
         String amountdata = getValue.getText();
         String spliter = String.valueOf(amountdata);
-        String[] sliceString = spliter.split(",");
+        String[] sliceString = spliter.split("-");
         String min = sliceString[0];
         String max = sliceString[1];
         logger.info("m value1 = " + "" + min);

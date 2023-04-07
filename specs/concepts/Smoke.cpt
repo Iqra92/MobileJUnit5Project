@@ -1,4 +1,4 @@
-# Go to QA Env
+# Login
 * Click element by "loginButton" if exist
 * Click element by "phoneNumber" if exist
 * Find element by "phoneNumber" and send keys "+5598765432111"
@@ -46,12 +46,17 @@
 * Click element by <key> if exist
 
 # Genarete Random PIX Deposit Value and Enter that value
-* Click element by "pixMinAmount" if exist
-* Genarete random number for Deposit methods "pixMinAmount" and saved the number "randomNumber". And write the saved key to the "pixTransactionAmount" element
+* Click element by "depositMinAmount" if exist
+* Clear text of element "depositTransactionAmount"
+* Wait "5" seconds
+* Click element by "depositMinAmount" if exist
+* Wait "5" seconds
+* Genarete random number for Deposit methods "depositMinAmount" and saved the number "randomNumber". And write the saved key to the "depositTransactionAmount" element
 * Wait "5" seconds
 
-# Continue To Transaction For PIX Deposit
-* Click element by "pixProceedPayment" if exist
+# Continue Transaction
+* Click element by "depositProceedPayment" if exist
+* Wait "2" seconds
 * Wait "10" seconds
 
 # Enter Pagsmile Details
@@ -63,10 +68,33 @@
 * Find element by "emailPM" and send keys "abc@abc.com"
 //* Hide keyboard
 * Swipe UP
-* Clear text of element "numberPM"
 * Click element by "numberPM" if exist
-* Find element by locator and send keys "75991435897"
-//* Find element by "numberPM" and send keys "75991435897"
+//* Clear text of element "numberPM"
+* Find element by locator test and send keys "75991435897"
+* Hide keyboard
+
+# Enter Pagsmile Details For Boleto
+* Find element by "boletoIDCPF" and send keys "502.844.147-27"
+* Wait "2" seconds
+* Click element by "boletoNamePM" if exist
+* Find element by "boletoNamePM" and send keys "qur"
+* Hide keyboard
+* Find element by "boletoEmailPM" and send keys "abc@abc.com"
+//* Hide keyboard
+* Swipe UP
+* Click element by "boletoNumberPM" if exist
+* Find element by locator with concat and send keys "75991435897"
+
+
+# Enter CEP Details
+* Find element by "cepPM" and send keys "98765432"
+* Wait "5" seconds
+
+
+# Enter CEP Details For Boleto
+* Find element by "boletoCepPM" and send keys "98765432"
+* Wait "5" seconds
+* Hide keyboard
 
 # Click on Perform Payment
 * Click element by "confirmPayment" if exist
