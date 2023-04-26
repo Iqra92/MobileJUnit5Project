@@ -16,10 +16,11 @@ tags:register
 tags:makeDepositWithPIXMethod
 //* Login
 * Open My account
-//* Choose Withdrawal
 * Choose to Payment Method with "depositPIXMethod"
 //* Genarete Random PIX Deposit Value and Enter that value
 * Continue Transaction
+//* Confirmation Of Redirecting To Pagsmile Page
+//* Get Transaction Number In Pagsmile Page
 * Enter Pagsmile Details
 * Click on Perform Payment
 * Continue to Main Site
@@ -29,7 +30,7 @@ tags:makeDepositWithBoleteMethod
 * Login
 * Open My account
 * Choose to Payment Method with "depositBoleteMethod"
-* Genarete Random PIX Deposit Value and Enter that value
+* Genarete Random Deposit Value and Enter that value
 * Continue Transaction
 * Enter Pagsmile Details For Boleto
 * Enter CEP Details For Boleto
@@ -41,7 +42,7 @@ tags:makeDepositWithBankTransferMethod
 * Login
 * Open My account
 * Choose to Payment Method with "depositBankTransferMethod"
-* Genarete Random PIX Deposit Value and Enter that value
+* Genarete Random Deposit Value and Enter that value
 * Continue Transaction
 * Enter Pagsmile Details
 * Click on Perform Payment
@@ -52,7 +53,7 @@ tags:makeDepositWithCryptoInMethod
 * Login
 * Open My account
 * Choose to Payment Method with "depositCryptoInMethod"
-* Genarete Random PIX Deposit Value and Enter that value
+* Genarete Random Deposit Value and Enter that value
 * Continue Transaction
 //* Enter Pagsmile Details
 //* Click on Perform Payment
@@ -63,10 +64,45 @@ tags:makeDepositWithLotteryMethod
 * Login
 * Open My account
 * Choose to Payment Method with "depositLotteryMethod"
-* Genarete Random PIX Deposit Value and Enter that value
+* Genarete Random Deposit Value and Enter that value
 * Continue Transaction
 * Enter Pagsmile Details
 * Click on Perform Payment
 * Continue to Main Site
+
+## Make Withdrawal With PIX Out Method
+* Login
+* Open My account
+* Choose Withdrawal
+* Choose to Payment Method with "withdrwaPixOutMethod"
+* Genarete Random Withdrawal Value and Enter that value
+* Select the Key Type and Enter the Key Number
+* Select the Identity Type and Enter the Identity Number
+* Continue Transaction For Withdrawal
+* Verification For Transaction Succesfully
+
+
+## Make Withdrawal With Bank Transfer Method
+* Login
+* Open My account
+* Choose Withdrawal
+* Choose to Payment Method with "withdrwaBankTransferMethod"
+* Genarete Random Withdrawal Value and Enter that value
+* Select the BT Identity Type and Enter the Identity Number
+* Select the Bank Name and Enter the Bank Branch
+* Select Account Type and Enter Account Number and Account Digit
+* Continue Transaction For Withdrawal
+* Verification For Transaction Succesfully
+
+
+## Make Withdrawal With Crypto Out Method
+* Login
+* Open My account
+* Choose Withdrawal
+* Choose to Payment Method with "withdrwaCryptoOutMethod"
+* Genarete Random Withdrawal Value and Enter that value
+* Enter Account Number For Crypto
+* Continue Transaction For Withdrawal
+* Verification For Transaction Succesfully
 
 

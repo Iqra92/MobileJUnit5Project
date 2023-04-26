@@ -45,7 +45,7 @@
 # Choose to Payment Method with <key>
 * Click element by <key> if exist
 
-# Genarete Random PIX Deposit Value and Enter that value
+# Genarete Random Deposit Value and Enter that value
 * Click element by "depositMinAmount" if exist
 * Clear text of element "depositTransactionAmount"
 * Wait "5" seconds
@@ -54,10 +54,83 @@
 * Genarete random number for Deposit methods "depositMinAmount" and saved the number "randomNumber". And write the saved key to the "depositTransactionAmount" element
 * Wait "5" seconds
 
+# Genarete Random Withdrawal Value and Enter that value
+* Click element by "withdrawMinAmount" if exist
+* Clear text of element "withdrawTransactionAmount"
+* Wait "5" seconds
+* Click element by "withdrawMinAmount" if exist
+* Wait "5" seconds
+* Genarete random number for Deposit methods "withdrawMinAmount" and saved the number "randomNumber". And write the saved key to the "withdrawTransactionAmount" element
+* Wait "5" seconds
+
+
+# Enter Account Number For Crypto
+//* Click element by "accountNumberCrypto" if exist
+* Find element by "accountNumberCrypto" and send keys "98765432176"
+
+# Select the Key Type and Enter the Key Number
+* Click element by "identityKeyTypeInWithdrawal" if exist
+* Wait "2" seconds
+* Click element by "keyTypeCPFInWithdrawal" if exist
+//* Pick the one of elements "listOfKeyTypeInWithdrawal" randomly then Write identity keys For Conditions "keyNumber"
+* Wait "2" seconds
+* Find element by "keyCPFInWithdrawal" and send keys "50284414727"
+
+# Select the Identity Type and Enter the Identity Number
+* Wait "2" seconds
+* Click element by "identityTypeInWithdrawalPage" if exist
+* Wait "2" seconds
+* Click element by "identityTypeCPFInWithdrawalPage" if exist
+//* Pick the one of elements "listOfIdentityTypeInWithdrawalPage" randomly then Write identity keys For Conditions "identityNumber"
+//* Write value "111111111" to element "identityNumber"
+* Find element by "keyCPFInWithdrawal" and send keys "11111111111"
+
+# Select the BT Identity Type and Enter the Identity Number
+* Click element by "bTidentityTypeInWithdrawal" if exist
+* Wait "2" seconds
+* Click element by "identityTypeCPFInWithdrawalPage" if exist
+* Find element by "keyCPFInWithdrawal" and send keys "11111111111"
+//* Pick the one of elements "listOfbTidentityTypeInWithdrawal" randomly then Write identity keys For Conditions "bTIdentityNumber"
+
+# Select the Bank Name and Enter the Bank Branch
+* Click element by "bankNameInWithdrawalPage" if exist
+* Wait "2" seconds
+* Click element by "listOfBankNameInWithdrawalPage" if exist
+//* Pick the one of elements "listOfBankNameInWithdrawalPage" randomly then Write identity keys For Conditions "bTBankBranch"
+* Find element by "bTBankBranch" and send keys "1234"
+
+# Select Account Type and Enter Account Number and Account Digit
+* Click element by "bTAccountTypeInWithdrawal" if exist
+* Click element by "listOfbTAccountTypeInWithdrawal" if exist
+* Find element by "accountNumber" and send keys "123456789"
+//* Pick the one of elements "listOfbTAccountTypeInWithdrawal" randomly then Write identity keys For Conditions "accountNumber"
+//* Click element by "accountDigitsr" if exist
+* Find element by "accountDigitsr" and send keys "1"
+
 # Continue Transaction
 * Click element by "depositProceedPayment" if exist
 * Wait "2" seconds
 * Wait "10" seconds
+
+# Continue Transaction For Withdrawal
+* Wait "2" seconds
+* Click element by "continueBtnInWithdrawal" if exist
+* Wait "5" seconds
+
+# Verification For Transaction Succesfully
+//* Check that the "successfullyWithdrawal" element contains the text "Success"
+* Find element by "successfullyWithdrawal" and text equals "Success"
+//* Verification From Text "successfullyWithdrawal"
+//* Wait "2" seconds
+//* Click element by "successfullyWithdrawal" if exist
+//* Wait "2" seconds
+
+# Confirmation Of Redirecting To Pagsmile Page
+* Transaction Verification From Text For Deposit "pagsmileVerificationPage"
+
+# Get Transaction Number In Pagsmile Page
+* Wait "2" seconds
+* Find element by "transactionNumber" and save text "transactionNumber"
 
 # Enter Pagsmile Details
 * Find element by "IDCPF" and send keys "502.844.147-27"

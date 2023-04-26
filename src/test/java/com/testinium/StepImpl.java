@@ -212,8 +212,9 @@ public class StepImpl extends HookImpl {
     public void clickByKey(String key) {
         doesElementExistByKey(key, 5);
         findElementByKey(key).click();
-        logger.info(key + "elemente tıkladı");
+        logger.info(key + "clicked on element");
     }
+
 
     @Step({"<key> elementinin <value> attirbute degeri <check> iceriyor mu"})
     public void clickByKey(String key, String value, String check) {
@@ -278,18 +279,19 @@ public class StepImpl extends HookImpl {
     public void checkTextByKey(String key, String text) {
         try {
             Thread.sleep(3000);
-            assertTrue(findElementByKey(key).getText().contains(text), "Element beklenen değeri taşımıyor !");
+            assertTrue(findElementByKey(key).getText().contains(text), "Element does not have expected value !");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
 
     @Step("Click element by <key> if exist")
     public void existClickByKey(String key) throws InterruptedException {
         MobileElement element;
         element = findElementByKeyWithoutAssert(key);
         if (element != null) {
-            System.out.println("  Element Selected");
+            System.out.println("  Element Selected: " + element.getText());
             Point elementPoint = ((MobileElement) element).getCenter();
             TouchAction action = new TouchAction(appiumDriver);
             action.tap(PointOption.point(elementPoint.x, elementPoint.y)).perform();
@@ -387,6 +389,18 @@ public class StepImpl extends HookImpl {
         findElementByKey(key).click();
         logger.info("Select check box successfully: ");
 
+    }
+
+    @Step("Transaction Verification From Text For Deposit <key>")
+    public void redirectingToPagsmileForDeposit(String element) {
+        String value = findElementByKey(element).getText();
+        logger.info(value);
+
+        if (findElementByKey(element).isDisplayed()) {
+            logger.info("Test Pass: " + value);
+        } else {
+            logger.info("Test Failed - Redirecting to Pagsmile page not successfully");
+        }
     }
 
     @Step("Find element by <key> and save text <saveKey>")
@@ -615,6 +629,7 @@ public class StepImpl extends HookImpl {
     public void equalsTextByKey(String key, String text) {
         assertTrue(appiumFluentWait.until(
                 ExpectedConditions.textToBe(selector.getElementInfoToBy(key), text)));
+        logger.info("Successfully -> Done");
     }
 
     @Step({"<seconds> saniye bekle ", "Wait <second> seconds"})
@@ -1164,5 +1179,69 @@ public class StepImpl extends HookImpl {
             throw new Exception("There isn't enough balance in account");
         }
     }
+
+    @Step({"Pick the one of elements <keys> randomly then Write identity keys For Conditions <keys>"})
+    public void writeValueForCondintion(String keyType, String num) throws InterruptedException {
+        List<MobileElement> elements = findElemenstByKey(keyType); //Get all options
+        int index = 0; //if list contains only one element it will take that element
+        Random rand = new Random();
+        index = rand.nextInt(elements.size() - 1);
+        String value = elements.get(index).getText();
+        logger.info("Switch value : " + "" + value);
+        waitBySecond(5);
+
+        switch (value) {
+            case IDENTITY_TYPE:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(IDENTITY_NUMBER, num);
+//        findElement(num).sendKeys(IDENTITY_NUMBER);
+                logger.info("' text is written to the '" + IDENTITY_NUMBER + "' element.");
+                break;
+            case PHONE:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(PHONE_NUMBER, num);
+                //     findElement(num).sendKeys(PHONE_NUMBER);
+                logger.info("' text is written to the '" + PHONE_NUMBER + "' element.");
+                break;
+            case EMAIL:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(EMAIL_ADDRESS, num);
+                //     findElement(num).sendKeys(EMAIL_ADDRESS);
+                logger.info("' text is written to the '" + EMAIL_ADDRESS + "' element.");
+                break;
+            case EPV_TYPE:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(EVP_NUMBER, num);
+                //     findElement(num).sendKeys(EMAIL_ADDRESS);
+                logger.info("' text is written to the '" + EVP_NUMBER + "' element.");
+                break;
+            case SAVINGS:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(ACCOUNT_NUMBER_SAVINGS, num);
+                //     findElement(num).sendKeys(EMAIL_ADDRESS);
+                logger.info("' text is written to the '" + ACCOUNT_NUMBER_SAVINGS + "' element.");
+                break;
+            case CHECKING:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(ACCOUNT_NUMBER_CHECKING, num);
+                //     findElement(num).sendKeys(EMAIL_ADDRESS);
+                logger.info("' text is written to the '" + ACCOUNT_NUMBER_CHECKING + "' element.");
+                break;
+            default:
+                elements.get(index).click();
+                existClickByKey(num);
+                sendK(IDENTITY_OTHER_NUMBER, num);
+                //     findElement(num).sendKeys(IDENTITY_OTHER_NUMBER);
+                logger.info("' text is written to the '" + IDENTITY_OTHER_NUMBER + "' element.");
+                break;
+        }
+    }
+
 
 }
